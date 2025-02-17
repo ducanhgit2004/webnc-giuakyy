@@ -67,12 +67,12 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $student = Student::findOrFail($id);
-        return view('students.show', compact('student'));
-    }
-    
+   public function show($id)
+{
+    $student = Student::findOrFail($id);
+    return view('students.show', compact('student'));
+}
+
 
     /**
      * Show the form for editing the specified student.
@@ -114,9 +114,17 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
-    {
-        $student->delete();
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
-    }
+    public function destroy($id)
+{
+    // Tìm học sinh theo ID, nếu không tìm thấy sẽ trả lỗi 404
+    $student = Student::findOrFail($id);
+
+    // Nếu sử dụng SoftDeletes, cần gọi forceDelete() để xóa vĩnh viễn
+    $student->forceDelete(); // Xóa vĩnh viễn thay vì delete
+
+    // Quay lại trang danh sách học sinh với thông báo thành công
+    return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+}
+
+    
 }
