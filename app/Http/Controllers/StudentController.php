@@ -67,10 +67,12 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
+        $student = Student::findOrFail($id);
         return view('students.show', compact('student'));
     }
+    
 
     /**
      * Show the form for editing the specified student.
