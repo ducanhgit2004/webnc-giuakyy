@@ -30,6 +30,8 @@
                     <th>Họ & Tên</th>
                     <th>Email</th>
                     <th>Điện Thoại</th>
+                    <th>Ngày sinh</th>
+                    <th>Địa chỉ</th>
                     <th>Khối</th>
                     <th class="text-center">Hành Động</th>
                 </tr>
@@ -41,6 +43,8 @@
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{{ $student->phone }}</td>
+                        <td>{{ $student->dob }}</td>
+                        <td>{{ $student->address }}</td>
                         <td>{{ $student->grade ? $student->grade->name : 'Chưa có khối' }}</td>
                         <td class="text-center">
                             <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">
