@@ -3,13 +3,22 @@
 @section('title', 'Danh sách Học Sinh')
 
 @section('content')
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Danh sách học sinh</h1>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Danh Sách Học Sinh</h3>
         <div class="card-tools">
             <form method="GET" action="{{ route('students.index') }}">
                 <div class="input-group input-group-sm" style="width: 250px;">
-                    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm..." value="{{ request('search') }}">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm học sinh..." value="{{ request('search') }}">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                     </div>

@@ -3,25 +3,31 @@
 @section('title', 'Danh sách Khối')
 
 @section('content')
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Danh sách Khối</h3>
-        <div class="card-tools">
-            <a href="{{ route('grades.create') }}" class="btn btn-success">
-                <i class="fas fa-plus"></i> Thêm khối mới
-            </a>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Danh sách Khối</h1>
+            </div>
         </div>
     </div>
-
+</div>
+<div class="card">
+    <div class="card-header">
+        <div class="card-tools">
+             <!-- Form tìm kiếm -->
+            <form method="GET" action="{{ route('grades.index') }}">
+                <div class="input-group input-group-sm" style="width: 250px;">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm khối..." value="{{ request('search') }}">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="card-body">
-        <!-- Form tìm kiếm -->
-        <form method="GET" action="{{ route('grades.index') }}" class="mb-3">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Tìm kiếm khối" value="{{ request('search') }}">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Tìm kiếm</button>
-            </div>
-        </form>
-
+        <a href="{{ route('grades.create') }}" class="btn btn-success mb-3">
+            <i class="fas fa-plus"></i> Thêm khối mới
+        </a>
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <tr>

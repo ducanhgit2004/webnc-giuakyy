@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 
 
 // Bảo vệ route courses, yêu cầu đăng nhập trước khi truy cập
@@ -16,6 +17,8 @@ Route::get('/', function () {
 })->middleware('auth'); // Chỉ cho phép truy cập nếu đã đăng nhập
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::resource('subjects', SubjectController::class);
 
 
 Route::get('/dashboard', function () {
