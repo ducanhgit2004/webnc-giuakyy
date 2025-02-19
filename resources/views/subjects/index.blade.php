@@ -29,9 +29,6 @@
             </div>
 
             <div class="card-body">
-                @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
                 <a href="{{ route('subjects.create') }}" class="btn btn-success mb-3">
                     <i class="fas fa-plus"></i> Thêm môn học
                 </a>
