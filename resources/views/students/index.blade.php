@@ -57,16 +57,16 @@
                         <td>{{ $student->grade ? $student->grade->name : 'Chưa có khối' }}</td>
                         <td class="text-center">
                             <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">
-                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye"></i>Xem
                             </a>
                             <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-edit"></i>Sửa
                             </a>
                             <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-trash"></i>Xóa
                                 </button>
                             </form>
                         </td>
