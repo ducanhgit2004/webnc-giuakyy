@@ -58,7 +58,7 @@ class StudentController extends Controller
         ]);
 
         Student::create($request->all());
-        return redirect()->route('students.index')->with('success', 'Student created successfully.');
+        return redirect()->route('students.index')->with('success', 'Học sinh đã được thêm thành công!');
     }
 
     /**
@@ -105,7 +105,7 @@ class StudentController extends Controller
         ]);
 
         $student->update($request->all());
-        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+        return redirect()->route('students.index')->with('success', 'Học sinh đã được cập nhật!');
     }
 
     /**
@@ -123,7 +123,7 @@ class StudentController extends Controller
     $student->forceDelete(); // Xóa vĩnh viễn thay vì delete
 
     // Quay lại trang danh sách học sinh với thông báo thành công
-    return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+    return redirect()->route('students.index')->with('success', 'Học sinh đã bị xóa!');
 }
 
     

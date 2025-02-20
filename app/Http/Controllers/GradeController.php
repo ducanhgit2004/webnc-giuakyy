@@ -42,7 +42,7 @@ class GradeController extends Controller
         ]);
 
         Grade::create($request->all());
-        return redirect()->route('grades.index')->with('success', 'Grade created successfully.');
+        return redirect()->route('grades.index')->with('success', 'Khối đã được thêm thành công!');
     }
 
     /**
@@ -72,7 +72,7 @@ class GradeController extends Controller
         ]);
 
         $grade->update($request->all());
-        return redirect()->route('grades.index')->with('success', 'Grade updated successfully.');
+        return redirect()->route('grades.index')->with('success', 'Khối đã được cập nhật!');
     }
 
     /**
@@ -81,6 +81,6 @@ class GradeController extends Controller
     public function destroy(Grade $grade)
     {
         $grade->delete();
-        return redirect()->route('grades.index')->with('success', 'Grade deleted successfully.');
+        return redirect()->route('grades.index')->with('success', 'Khối đã bị xóa!');
     }
 }
