@@ -22,14 +22,12 @@
                 </a>
             </li>
         </ul>
-
-       
     </nav>
 
     <!-- Sidebar -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="/" class="brand-link">
-            <span class="brand-link d-flex">Student Management</span>
+            <span class="brand-text font-weight-light">Student Management</span>
         </a>
         <div class="sidebar">
             <nav class="mt-2">
@@ -51,10 +49,17 @@
                             <i class="nav-icon fas fa-book"></i>
                             <p>Môn học</p>
                         </a>
-                    </li>                    
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('teachers.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>Giáo viên</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
-            <!-- Logout Button (in separate ul) -->
+
+            <!-- Logout Button -->
             <ul class="navbar-nav ml-auto d-flex flex-column justify-content-end align-items-center" style="height: 70%;">
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
@@ -64,7 +69,7 @@
                         </button>
                     </form>
                 </li>
-            </ul>            
+            </ul>
         </div>
     </aside>
 
@@ -76,7 +81,7 @@
             </div>
         @endif
 
-        {{-- Phần nội dung chính của component --}}
+        <!-- Main Content -->
         @yield('content')
     </div>
 </div>

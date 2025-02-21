@@ -18,6 +18,7 @@ class Student extends Model
         'dob',         // Ngày sinh
         'address',     // Địa chỉ
         'grade_id',    // ID lớp
+        'profile_image'// Ảnh đại dine
     ];
 
     // Quan hệ: Một sinh viên thuộc về một lớp

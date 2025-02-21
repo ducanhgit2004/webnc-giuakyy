@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Grade;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the students.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -25,14 +24,12 @@ class StudentController extends Controller
             });
         }
 
-        $students = $query->paginate(10); // Thêm phân trang
+        $students = $query->paginate(10);
         return view('students.index', compact('students'));
     }
 
     /**
      * Show the form for creating a new student.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -42,9 +39,6 @@ class StudentController extends Controller
 
     /**
      * Store a newly created student in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -55,30 +49,32 @@ class StudentController extends Controller
             'dob' => 'nullable|date',
             'address' => 'nullable',
             'grade_id' => 'required|exists:grades,id',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        Student::create($request->all());
+        $studentData = $request->all();
+
+        // Xử lý upload ảnh
+        if ($request->hasFile('profile_image')) {
+            $path = $request->file('profile_image')->store('students', 'public');
+            $studentData['profile_image'] = $path;
+        }
+
+        Student::create($studentData);
         return redirect()->route('students.index')->with('success', 'Học sinh đã được thêm thành công!');
     }
 
     /**
      * Display the specified student.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
      */
-   public function show($id)
-{
-    $student = Student::findOrFail($id);
-    return view('students.show', compact('student'));
-}
-
+    public function show($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('students.show', compact('student'));
+    }
 
     /**
      * Show the form for editing the specified student.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
      */
     public function edit(Student $student)
     {
@@ -88,10 +84,6 @@ class StudentController extends Controller
 
     /**
      * Update the specified student in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Student $student)
     {
@@ -102,29 +94,43 @@ class StudentController extends Controller
             'dob' => 'nullable|date',
             'address' => 'nullable',
             'grade_id' => 'required|exists:grades,id',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $student->update($request->all());
+        $studentData = $request->all();
+
+        // Xử lý cập nhật ảnh hồ sơ
+        if ($request->hasFile('profile_image')) {
+            // Xóa ảnh cũ nếu có
+            if ($student->profile_image && Storage::disk('public')->exists($student->profile_image)) {
+                Storage::disk('public')->delete($student->profile_image);
+            }
+
+            // Lưu ảnh mới
+            $path = $request->file('profile_image')->store('students', 'public');
+            $studentData['profile_image'] = $path;
+        }
+
+        $student->update($studentData);
         return redirect()->route('students.index')->with('success', 'Học sinh đã được cập nhật!');
     }
 
     /**
      * Remove the specified student from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-{
-    // Tìm học sinh theo ID, nếu không tìm thấy sẽ trả lỗi 404
-    $student = Student::findOrFail($id);
+    {
+        $student = Student::findOrFail($id);
 
-    // Nếu sử dụng SoftDeletes, cần gọi forceDelete() để xóa vĩnh viễn
-    $student->forceDelete(); // Xóa vĩnh viễn thay vì delete
+        // Xóa ảnh hồ sơ nếu có
+        if ($student->profile_image && Storage::disk('public')->exists($student->profile_image)) {
+            Storage::disk('public')->delete($student->profile_image);
+        }
 
-    // Quay lại trang danh sách học sinh với thông báo thành công
-    return redirect()->route('students.index')->with('success', 'Học sinh đã bị xóa!');
+        // Xóa học sinh
+        $student->forceDelete();
+
+        return redirect()->route('students.index')->with('success', 'Học sinh đã bị xóa!');
+    }
 }
 
-    
-}
