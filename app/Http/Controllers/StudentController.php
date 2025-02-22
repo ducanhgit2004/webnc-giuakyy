@@ -20,11 +20,20 @@ class StudentController extends Controller
             $search = $request->input('search');
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%$search%")
-                  ->orWhere('email', 'like', "%$search%");
+                  ->orWhere('email', 'like', "%$search%")
+                  ->orWhere('phone', 'like', "%$search%");
             });
         }
 
         $students = $query->paginate(10);
+
+        // Kiểm tra ảnh đại diện và gán ảnh mặc định nếu chưa có
+        foreach ($students as $student) {
+            if (!$student->profile_image || !Storage::disk('public')->exists($student->profile_image)) {
+                $student->profile_image = 'students/default.png';
+            }
+        }
+
         return view('students.index', compact('students'));
     }
 
@@ -58,6 +67,9 @@ class StudentController extends Controller
         if ($request->hasFile('profile_image')) {
             $path = $request->file('profile_image')->store('students', 'public');
             $studentData['profile_image'] = $path;
+        } else {
+            // Gán ảnh mặc định nếu không upload ảnh
+            $studentData['profile_image'] = 'students/default.png';
         }
 
         Student::create($studentData);
@@ -133,4 +145,3 @@ class StudentController extends Controller
         return redirect()->route('students.index')->with('success', 'Học sinh đã bị xóa!');
     }
 }
-

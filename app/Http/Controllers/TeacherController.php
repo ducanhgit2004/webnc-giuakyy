@@ -30,24 +30,26 @@ class TeacherController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:teachers',
             'phone' => 'nullable|string|max:20',
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'subjects' => 'array'
         ]);
 
         // Xử lý ảnh hồ sơ nếu có
         $imagePath = null;
-        if ($request->hasFile('profile_image')) {
-            $imagePath = $request->file('profile_image')->store('teachers', 'public');
+        if ($request->hasFile('profile_picture')) {
+            $imagePath = $request->file('profile_picture')->store('teachers', 'public');
         }
 
         $teacher = Teacher::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'profile_image' => $imagePath,
+            'profile_image' => $imagePath ?? 'teachers/default.png',
         ]);
 
-        $teacher->subjects()->attach($request->subjects);
+        if ($request->has('subjects')) {
+            $teacher->subjects()->attach($request->subjects);
+        }
 
         return redirect()->route('teachers.index')->with('success', 'Thêm giáo viên thành công!');
     }
@@ -73,19 +75,19 @@ class TeacherController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:teachers,email,' . $teacher->id,
             'phone' => 'nullable|string|max:20',
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'subjects' => 'array'
         ]);
 
         // Xử lý ảnh hồ sơ
-        if ($request->hasFile('profile_image')) {
+        if ($request->hasFile('profile_picture')) {
             // Xoá ảnh cũ nếu có
             if ($teacher->profile_image && Storage::exists('public/' . $teacher->profile_image)) {
                 Storage::delete('public/' . $teacher->profile_image);
             }
 
             // Lưu ảnh mới
-            $imagePath = $request->file('profile_image')->store('teachers', 'public');
+            $imagePath = $request->file('profile_picture')->store('teachers', 'public');
             $teacher->profile_image = $imagePath;
         }
 

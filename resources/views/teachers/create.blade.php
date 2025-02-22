@@ -35,7 +35,12 @@
 
                 <div class="form-group">
                     <label for="profile_picture">Ảnh đại diện</label>
-                    <input type="file" name="profile_picture" class="form-control rounded">
+                    <input type="file" name="profile_picture" class="form-control rounded" onchange="previewImage(event)">
+                </div>
+
+                <!-- Hiển thị ảnh xem trước -->
+                <div class="mt-3">
+                    <img id="imagePreview" src="#" alt="Ảnh xem trước" style="max-width: 200px; display: none;">
                 </div>
             </div>
 
@@ -50,4 +55,21 @@
         </form>
     </div>
 </div>
+
+<!-- JavaScript để hiển thị ảnh xem trước -->
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById('imagePreview');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endsection

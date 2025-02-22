@@ -4,6 +4,9 @@
 
 @section('content')
 
+<!-- Thêm Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXRM2R2Yl5dFfG5n9N4Qh8RO3f3nL1O8xQ7lG6X3IqX3VJ2Cg1q6pGk6CzE3cEGBuC1U9Szw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -13,6 +16,7 @@
         </div>
     </div>
 </div>
+
 <div class="card">
     <div class="card-header">
         <div class="card-tools">
@@ -36,6 +40,7 @@
             <thead class="table-dark">
                 <tr>
                     <th>#</th>
+                    <th>Ảnh</th>
                     <th>Họ & Tên</th>
                     <th>Email</th>
                     <th>Điện Thoại</th>
@@ -49,6 +54,9 @@
                 @foreach ($students as $student)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $student->profile_image) }}" alt="Ảnh đại diện" style="width: 30px; height: 30px; object-fit: cover;">
+                        </td>
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{{ $student->phone }}</td>
@@ -57,16 +65,16 @@
                         <td>{{ $student->grade ? $student->grade->name : 'Chưa có khối' }}</td>
                         <td class="text-center">
                             <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">
-                                <i class="fas fa-eye"></i>Xem
+                                <i class="fas fa-eye"></i> Xem
                             </a>
                             <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">
-                                <i class="fas fa-edit"></i>Sửa
+                                <i class="fas fa-edit"></i> Sửa
                             </a>
                             <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
-                                    <i class="fas fa-trash"></i>Xóa
+                                    <i class="fas fa-trash"></i> Xóa
                                 </button>
                             </form>
                         </td>
@@ -76,8 +84,8 @@
         </table>
     </div>
 
-    <div class="card-footer">
-        {{ $students->links() }}
+    <div class="card-footer d-flex justify-content-end">
+        {{ $students->links('pagination::bootstrap-4') }}
     </div>
 </div>
 @endsection

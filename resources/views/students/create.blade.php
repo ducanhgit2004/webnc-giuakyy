@@ -9,7 +9,7 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route('students.store') }}" method="POST">
+        <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -67,6 +67,19 @@
                 @enderror
             </div>
 
+            <!-- Thêm ảnh đại diện -->
+            <div class="mb-3">
+                <label for="profile_picture" class="form-label">Ảnh đại diện</label>
+                <input type="file" class="form-control @error('profile_image') is-invalid @enderror" id="profile_image" name="profile_picture" onchange="previewImage(event)">
+                @error('profile_image')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <!-- Hiển thị ảnh xem trước -->
+                <div class="mt-3">
+                    <img id="imagePreview" src="#" alt="Ảnh xem trước" style="max-width: 200px; display: none;">
+                </div>
+            </div>
+
             <div class="d-flex justify-content-between">
                 <a href="{{ route('students.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Quay lại
@@ -78,4 +91,21 @@
         </form>
     </div>
 </div>
+
+<!-- JavaScript để hiển thị ảnh xem trước -->
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById('imagePreview');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endsection
