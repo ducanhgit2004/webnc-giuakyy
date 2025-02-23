@@ -29,97 +29,9 @@ Dự án sử dụng các công nghệ sau:
 ## Quá Trình Phát Triển Phần Mềm
 
 ### Sơ Đồ Khối (UML) - Cấu trúc Database
-(![webgk drawio](https://github.com/user-attachments/assets/baa31540-22e5-43a9-8a86-60946f76996e)
+![webgk drawio](https://github.com/user-attachments/assets/baa31540-22e5-43a9-8a86-60946f76996e)
 
-### Sơ Đồ Cấu Trúc Project - Nâng Cấp
-mermaid
-graph TB
-    User((User))
-    
-    subgraph "Course Management System"
-        subgraph "Web Interface"
-            WebApp["Web Application<br>(Laravel Blade)"]
-            
-            subgraph "Frontend Components"
-                AuthViews["Authentication Views<br>(Blade Templates)"]
-                CourseViews["Course Management Views<br>(Blade Templates)"]
-                TeacherViews["Teacher Management Views<br>(Blade Templates)"]
-                StudentViews["Student Management Views<br>(Blade Templates)"]
-                ProfileViews["Profile Management Views<br>(Blade Templates)"]
-            end
-        end
-        
-        subgraph "Application Core"
-            Router["Router<br>(Laravel Routes)"]
-            
-            subgraph "Controllers"
-                AuthController["Auth Controllers<br>(PHP)"]
-                CourseController["Course Controller<br>(PHP)"]
-                TeacherController["Teacher Controller<br>(PHP)"]
-                StudentController["Student Controller<br>(PHP)"]
-                ProfileController["Profile Controller<br>(PHP)"]
-            end
-            
-            subgraph "Models"
-                UserModel["User Model<br>(Eloquent)"]
-                CourseModel["Course Model<br>(Eloquent)"]
-                TeacherModel["Teacher Model<br>(Eloquent)"]
-                StudentModel["Student Model<br>(Eloquent)"]
-                EnrollmentModel["Enrollment Model<br>(Eloquent)"]
-            end
-            
-            subgraph "Services"
-                AuthService["Authentication Service<br>(Laravel Breeze)"]
-                DataTables["DataTables Service<br>(Yajra)"]
-                ValidationService["Validation Service<br>(Laravel)"]
-            end
-        end
-        
-        subgraph "Data Layer"
-            Database[("Database<br>SQLite")]
-            Cache["Cache Storage<br>(Laravel Cache)"]
-        end
-    end
 
-    %% Connections
-    User -->|interacts with| WebApp
-    
-    %% Frontend to Router
-    WebApp -->|routes requests to| Router
-    
-    %% Router to Controllers
-    Router -->|dispatches to| AuthController
-    Router -->|dispatches to| CourseController
-    Router -->|dispatches to| TeacherController
-    Router -->|dispatches to| StudentController
-    Router -->|dispatches to| ProfileController
-    
-    %% Controllers to Models
-    AuthController -->|uses| UserModel
-    CourseController -->|manages| CourseModel
-    TeacherController -->|manages| TeacherModel
-    StudentController -->|manages| StudentModel
-    ProfileController -->|manages| UserModel
-    
-    %% Models to Database
-    UserModel -->|persists in| Database
-    CourseModel -->|persists in| Database
-    TeacherModel -->|persists in| Database
-    StudentModel -->|persists in| Database
-    EnrollmentModel -->|persists in| Database
-    
-    %% Service Connections
-    AuthController -->|uses| AuthService
-    CourseController -->|uses| DataTables
-    TeacherController -->|uses| DataTables
-    StudentController -->|uses| DataTables
-    
-    %% View Connections
-    AuthController -->|renders| AuthViews
-    CourseController -->|renders| CourseViews
-    TeacherController -->|renders| TeacherViews
-    StudentController -->|renders| StudentViews
-    ProfileController -->|renders| ProfileViews
 ### Sơ Đồ Chức Năng (Sơ Đồ Thuật Toán)
 mermaid
 flowchart TD
