@@ -55,7 +55,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $student->profile_image) }}" alt="Ảnh đại diện" style="width: 30px; height: 30px; object-fit: cover;">
+                            <img src="{{ secure_asset('storage/' . $student->profile_image) }}" alt="Ảnh đại diện" style="width: 30px; height: 30px; object-fit: cover;">
                         </td>
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>

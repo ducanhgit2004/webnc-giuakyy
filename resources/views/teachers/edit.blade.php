@@ -37,7 +37,7 @@
                         <label for="profile_image">Ảnh hồ sơ</label>
                         <input type="file" name="profile_image" class="form-control">
                         @if ($teacher->profile_image)
-                            <img src="{{ asset('storage/' . $teacher->profile_image) }}" alt="Ảnh hồ sơ" width="100" style="margin-top: 10px; border-radius: 8px;">
+                            <img src="{{ secure_asset('storage/' . $teacher->profile_image) }}" alt="Ảnh hồ sơ" width="100" style="margin-top: 10px; border-radius: 8px;">
                         @endif
                     </div>
                 </div>

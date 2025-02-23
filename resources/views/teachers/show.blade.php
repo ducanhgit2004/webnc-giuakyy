@@ -10,11 +10,11 @@
             <div class="box-body text-center">
                 <!-- Hiển thị ảnh hồ sơ nếu có -->
                 @if ($teacher->profile_image)
-                    <img src="{{ asset('storage/' . $teacher->profile_image) }}" alt="Ảnh hồ sơ" 
+                    <img src="{{ secure_asset('storage/' . $teacher->profile_image) }}" alt="Ảnh hồ sơ" 
                          class="img-thumbnail" 
                          style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; margin-bottom: 20px;">
                 @else
-                    <img src="{{ asset('images/default-profile.png') }}" alt="Ảnh mặc định" 
+                    <img src="{{ secure_asset('images/default-profile.png') }}" alt="Ảnh mặc định" 
                          class="img-thumbnail" 
                          style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; margin-bottom: 20px;">
                 @endif

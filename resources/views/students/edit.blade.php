@@ -71,7 +71,7 @@
                 <label for="profile_image" class="form-label">Ảnh hồ sơ</label>
                 @if ($student->profile_image)
                     <div class="mb-2">
-                        <img src="{{ asset('storage/' . $student->profile_image) }}" alt="Ảnh hồ sơ" width="100" class="rounded">
+                        <img src="{{ secure_asset('storage/' . $student->profile_image) }}" alt="Ảnh hồ sơ" width="100" class="rounded">
                     </div>
                 @endif
                 <input type="file" class="form-control @error('profile_image') is-invalid @enderror" id="profile_image" name="profile_image">

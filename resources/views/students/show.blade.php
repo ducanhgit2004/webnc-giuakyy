@@ -24,9 +24,9 @@
     <div class="card-body">
         <div class="text-center mb-3">
             @if ($student->profile_image)
-                <img src="{{ asset('storage/' . $student->profile_image) }}" class="rounded-circle" width="120" height="120" alt="Ảnh hồ sơ">
+                <img src="{{ secure_asset('storage/' . $student->profile_image) }}" class="rounded-circle" width="120" height="120" alt="Ảnh hồ sơ">
             @else
-                <img src="{{ asset('images/default-profile.png') }}" class="rounded-circle" width="120" height="120" alt="Ảnh mặc định">
+                <img src="{{ secure_asset('images/default-profile.png') }}" class="rounded-circle" width="120" height="120" alt="Ảnh mặc định">
             @endif
         </div>
 

@@ -9,10 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class TeacherController extends Controller
 {
-    // Hiển thị danh sách giáo viên
-    public function index()
+    // Hiển thị danh sách giáo viên với tìm kiếm
+    public function index(Request $request)
     {
-        $teachers = Teacher::with('subjects')->get();
+        $search = $request->input('search');
+
+        $teachers = Teacher::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%")
+                         ->orWhere('email', 'like', "%{$search}%")
+                         ->orWhere('phone', 'like', "%{$search}%");
+        })->with('subjects')->paginate(10);
+
         return view('teachers.index', compact('teachers'));
     }
 
