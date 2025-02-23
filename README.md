@@ -29,7 +29,7 @@ Dự án sử dụng các công nghệ sau:
 ## Quá Trình Phát Triển Phần Mềm
 
 ### Sơ Đồ Khối (UML) - Cấu trúc Database
-![Database Schema](https://img.upanh.tv/2025/02/18/Anh-man-hinh-2025-02-18-luc-11.54.33.png)
+![Database Schema](![webgk drawio](https://github.com/user-attachments/assets/baa31540-22e5-43a9-8a86-60946f76996e)
 
 ### Sơ Đồ Cấu Trúc Project - Nâng Cấp
 mermaid
