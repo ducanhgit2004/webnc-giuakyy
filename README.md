@@ -65,27 +65,32 @@ flowchart TD
 
 3. Configure .env
    
-   DB_CONNECTION=mysql \n
+   DB_CONNECTION=mysql
+   
    DB_HOST=127.0.0.1
+   
    DB_PORT=3306
-   DB_DATABASE=course_management
+   
+   DB_DATABASE=student_management
+
    DB_USERNAME=root
+   
    DB_PASSWORD=
    
 
-4. Install dependencies
+5. Install dependencies
    
    composer require yajra/laravel-datatables-oracle
    npm install admin-lte@3.1.0
    
 
-5. Run migrations
+6. Run migrations
    
    php artisan migrate
    php artisan db:seed
    
 
-6. Deploy to server
+7. Deploy to server
    
    php artisan serve
    
