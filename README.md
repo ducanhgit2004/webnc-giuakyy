@@ -24,7 +24,7 @@ Dự án sử dụng các công nghệ sau:
 - HTML, CSS, JavaScript
 - Laravel Repository Pattern
 - Laravel Service Pattern
-- Laravel Events & Listeners
+- Laravel breeze
 
 ## Quá Trình Phát Triển Phần Mềm
 
