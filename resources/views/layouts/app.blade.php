@@ -26,8 +26,8 @@
 
     <!-- Sidebar -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="/" class="brand-link">
-            <span class="brand-text font-weight-light">Student Management</span>
+        <a href="/" class="brand-link" style="text-decoration: none;">
+            <span class="brand-text font-weight-bold">Quản lý học sinh</span>
         </a>
         <div class="sidebar">
             <nav class="mt-2">
