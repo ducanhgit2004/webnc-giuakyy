@@ -34,17 +34,15 @@ Dự án sử dụng các công nghệ sau:
 
 
 ### Sơ Đồ Chức Năng (Sơ Đồ Thuật Toán)
-mermaid
-flowchart TD
-    A[Người dùng truy cập hệ thống] --> B[Chọn module quản lý]
-    B --> C{Chọn chức năng}
-    C --> D[Thực hiện CRUD]
-    C --> E[Xem danh sách]
-    C --> F[Tìm kiếm]
-    C --> G[Sắp xếp]
-
-
-
+```mermaid
+graph TD;
+    A[Người dùng truy cập hệ thống] --> B[Chọn module quản lý];
+    B --> C{Chọn chức năng};
+    C --> D[Thực hiện CRUD];
+    C --> E[Xem danh sách];
+    C --> F[Tìm kiếm];
+    C --> G[Sắp xếp];
+```
 
 ## Chu Trình Phát Triển
 1. Phases:
