@@ -32,24 +32,35 @@
         <div class="sidebar">
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column">
+                    <!-- Dashboard -->
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <!-- Khối -->
                     <li class="nav-item">
                         <a href="{{ route('grades.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-graduation-cap"></i>
                             <p>Khối</p>
                         </a>
                     </li>
+                    <!-- Học sinh -->
                     <li class="nav-item">
                         <a href="{{ route('students.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-user-graduate"></i>
                             <p>Học sinh</p>
                         </a>
                     </li>
+                    <!-- Môn học -->
                     <li class="nav-item">
                         <a href="{{ route('subjects.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-book"></i>
                             <p>Môn học</p>
                         </a>
                     </li>
+                    <!-- Giáo viên -->
                     <li class="nav-item">
                         <a href="{{ route('teachers.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -60,7 +71,7 @@
             </nav>
 
             <!-- Logout Button -->
-            <ul class="navbar-nav ml-auto d-flex flex-column justify-content-end align-items-center" style="height: 70%;">
+            <ul class="navbar-nav ml-auto d-flex flex-column justify-content-end align-items-center" style="height: 60%;">
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
