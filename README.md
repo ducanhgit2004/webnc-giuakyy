@@ -29,7 +29,7 @@ Dự án sử dụng các công nghệ sau:
 ## Quá Trình Phát Triển Phần Mềm
 
 ### Sơ Đồ Khối (UML) - Cấu trúc Database
-(https://github.com/user-attachments/assets/7a07b7bc-511a-47d0-94dc-884962d69cb3)
+![Database Schema](https://github.com/user-attachments/assets/7a07b7bc-511a-47d0-94dc-884962d69cb3)
 
 
 
