@@ -29,7 +29,7 @@ Dự án sử dụng các công nghệ sau:
 ## Quá Trình Phát Triển Phần Mềm
 
 ### Sơ Đồ Khối (UML) - Cấu trúc Database
-![webgk drawio](https://github.com/user-attachments/assets/baa31540-22e5-43a9-8a86-60946f76996e)
+![webgk drawio](![Untitled diagram-2025-02-24-085920](https://github.com/user-attachments/assets/aa327e3b-2f7f-41c6-8249-78a82ed58368))
 
 
 ### Sơ Đồ Chức Năng (Sơ Đồ Thuật Toán)
