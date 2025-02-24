@@ -24,24 +24,25 @@ Dự án sử dụng các công nghệ sau:
 - HTML, CSS, JavaScript
 - Laravel Repository Pattern
 - Laravel Service Pattern
-- Laravel Events & Listeners
+- Laravel breeze
 
 ## Quá Trình Phát Triển Phần Mềm
 
 ### Sơ Đồ Khối (UML) - Cấu trúc Database
-![webgk drawio](https://github.com/user-attachments/assets/baa31540-22e5-43a9-8a86-60946f76996e)
+![Database Schema](https://github.com/user-attachments/assets/7a07b7bc-511a-47d0-94dc-884962d69cb3)
+
 
 
 ### Sơ Đồ Chức Năng (Sơ Đồ Thuật Toán)
-mermaid
-flowchart TD
-    A[Người dùng truy cập hệ thống] --> B[Chọn module quản lý]
-    B --> C{Chọn chức năng}
-    C --> D[Thực hiện CRUD]
-    C --> E[Xem danh sách]
-    C --> F[Tìm kiếm]
-    C --> G[Sắp xếp]
-
+```mermaid
+graph TD;
+    A[Người dùng truy cập hệ thống] --> B[Chọn module quản lý];
+    B --> C{Chọn chức năng};
+    C --> D[Thực hiện CRUD];
+    C --> E[Xem danh sách];
+    C --> F[Tìm kiếm];
+    C --> G[Sắp xếp];
+```
 
 ## Chu Trình Phát Triển
 1. Phases:
@@ -66,26 +67,31 @@ flowchart TD
 3. Configure .env
    
    DB_CONNECTION=mysql
+   
    DB_HOST=127.0.0.1
+   
    DB_PORT=3306
-   DB_DATABASE=course_management
+   
+   DB_DATABASE=student_management
+
    DB_USERNAME=root
+   
    DB_PASSWORD=
    
 
-4. Install dependencies
+5. Install dependencies
    
    composer require yajra/laravel-datatables-oracle
    npm install admin-lte@3.1.0
    
 
-5. Run migrations
+6. Run migrations
    
    php artisan migrate
    php artisan db:seed
    
 
-6. Deploy to server
+7. Deploy to server
    
    php artisan serve
    
