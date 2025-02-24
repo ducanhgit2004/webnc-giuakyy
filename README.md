@@ -1,7 +1,7 @@
 # Tên Dự Án: Hệ Thống Quản Lý Sinh Viên
 
 ## Được Phát Triển Bởi:
-- [Nguyễn Đức Anh]
+- **Nguyễn Đức Anh**
 
 
 ## Mô Tả Ứng Dụng
