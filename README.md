@@ -41,7 +41,6 @@ graph TD;
     C --> D[Thực hiện CRUD];
     C --> E[Xem danh sách];
     C --> F[Tìm kiếm];
-    C --> G[Sắp xếp];
 ```
 
 ## Chu Trình Phát Triển
